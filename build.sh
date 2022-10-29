@@ -15,6 +15,11 @@ Help()
    echo
 }
 
+# List of available build targets and their mapping
+declare -A BUILD_TARGETS_ARRAY=( 
+ [all]=all  [game]=CoolestGame_run  [test]=CoolestGame_lib
+)
+
 # Get the options
 while getopts ":h:t:d:b:" option; do
    case $option in
@@ -22,18 +27,18 @@ while getopts ":h:t:d:b:" option; do
          Help
          exit;;
       t) # Set target binary to build (all | game | test)   
-         if [ "$OPTARG" = "all" ] || [ "$OPTARG" = "game" ] || [ "$OPTARG" = "test" ]; then
-            BUILD_TARGET=$OPTARG
+         if [[ -n "${BUILD_TARGETS_ARRAY[$OPTARG]}" ]]; then
+            BUILD_TARGET=${BUILD_TARGETS_ARRAY[${OPTARG}]}
             echo "- Building ${BUILD_TARGET} target(s)."
          else
             Help
             echo "Error: Invalid build target. Expected: 'game', 'test' or 'all'"
-            echo $OPTARG
+            echo ${OPTARG}
             exit
          fi;;
       d) # Set build directory
          if [ -z "${BUILD_DIR}" ]; then 
-            BUILD_DIR=$OPTARG
+            BUILD_DIR=${OPTARG}
             echo "- Building project in: ${BUILD_DIR}"
          else 
             Help
