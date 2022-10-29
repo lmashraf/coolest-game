@@ -1,15 +1,16 @@
-################## BUILD ################## 
+################## BUILD ##################
+
 # Get the game sources
-file( 
-        GLOB_RECURSE GAME_SOURCES 
-        main.cpp 
+file(
+        GLOB_RECURSE GAME_SOURCES
+        main.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/src/common/*.cpp
 )
 
 # Get sources needed to run the tests and to export them as a static library
-file( 
-        GLOB_RECURSE LIB_SOURCES 
-        ${CMAKE_CURRENT_SOURCE_DIR}/src/common/*.cpp 
+file(
+        GLOB_RECURSE LIB_SOURCES
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/common/*.cpp
 )
 
 # Create executable from the game sources

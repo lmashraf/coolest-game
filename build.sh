@@ -16,7 +16,7 @@ Help()
 }
 
 # List of available build targets and their mapping
-declare -A BUILD_TARGETS_ARRAY=( 
+declare -A BUILD_TARGETS_ARRAY=(
  [all]=all  [game]=CoolestGame_run  [test]=CoolestGame_lib
 )
 
@@ -26,7 +26,7 @@ while getopts ":h:t:d:b:" option; do
       h) # display Help
          Help
          exit;;
-      t) # Set target binary to build (all | game | test)   
+      t) # Set target binary to build (all | game | test)
          if [[ -n "${BUILD_TARGETS_ARRAY[$OPTARG]}" ]]; then
             BUILD_TARGET=${BUILD_TARGETS_ARRAY[${OPTARG}]}
             echo "- Building ${BUILD_TARGET} target(s)."
@@ -37,13 +37,13 @@ while getopts ":h:t:d:b:" option; do
             exit
          fi;;
       d) # Set build directory
-         if [ -z "${BUILD_DIR}" ]; then 
+         if [ -z "${BUILD_DIR}" ]; then
             BUILD_DIR=${OPTARG}
             echo "- Building project in: ${BUILD_DIR}"
-         else 
+         else
             Help
             echo "Error: Missing build folder, please make sure to specify one."
-            exit 
+            exit
          fi;;
       b) # Set the build type (Debug | Release)
          if [ "$OPTARG" = Debug ] || [ "$OPTARG" = Release ]; then
@@ -66,7 +66,7 @@ if [[ ! -v BUILD_TYPE || ! -v BUILD_TARGET || ! -v BUILD_DIR ]]; then
       echo "Error: Invalid or missing arguments"
       exit;
    else
-      
+
       # If the build folder already exists it will be deleted and reset.
       if [ -d "${BUILD_DIR}" ]; then rm -Rf ${BUILD_DIR}; fi
       mkdir ${BUILD_DIR} && cd ${BUILD_DIR}
