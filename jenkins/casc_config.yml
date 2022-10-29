@@ -3,6 +3,7 @@ jenkins:
   securityRealm:
     local:
       allowsSignup: false
+      # Creates 'admin' user
       users:
       - id: ${JENKINS_ADMIN_ID}
         password: ${JENKINS_ADMIN_PASSWORD}
@@ -11,6 +12,14 @@ jenkins:
       permissions:
         - "Overall/Administer:admin"
         - "Overall/Read:authenticated"
+      remotingSecurity:
+        enabled: true
+# Setup build authorization to control jobs' execution
+security:
+  queueItemAuthenticator:
+    authenticators:
+    - global:
+        strategy: triggeringUsersAuthorizationStrategy
 unclassified:
   location:
     url: "http://localhost:8080/"
