@@ -8,10 +8,6 @@ pipeline {
         BUILD_TARGET = 'all'
     }
     stages {
-        stage('Clone')
-        {
-            checkout scm
-        }
         stage('Build')
         {
             steps
