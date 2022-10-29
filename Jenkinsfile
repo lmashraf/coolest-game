@@ -24,9 +24,4 @@ pipeline {
 
         }
     }
-    post {
-        always {
-            junit 'test_detail.xml'
-        }
-    }
 }
