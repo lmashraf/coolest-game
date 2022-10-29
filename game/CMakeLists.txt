@@ -3,8 +3,7 @@
 file( 
         GLOB_RECURSE GAME_SOURCES 
         main.cpp 
-        ${CMAKE_CURRENT_SOURCE_DIR}/src/common/*.cpp 
-        ${CMAKE_CURRENT_SOURCE_DIR}/src/include/*.h 
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/common/*.cpp
 )
 
 # Get sources needed to run the tests and to export them as a static library
