@@ -1,6 +1,8 @@
 pipeline {
     agent {
-        dockerfile true
+        dockerfile {
+            filename 'Dockerfile'
+        }
     }
     environment {
         BUILD_DIR = 'build/'
