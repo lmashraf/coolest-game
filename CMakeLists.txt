@@ -10,8 +10,8 @@ set( GAME_TEST_BINARY ${CMAKE_PROJECT_NAME}_test )
 set( GAME_LIBRARY ${CMAKE_PROJECT_NAME}_lib )
 
 # Include directories
-include_directories( 
-    game/include  
+include_directories(
+    game/include
     dependencies/googletest/include
 )
 
