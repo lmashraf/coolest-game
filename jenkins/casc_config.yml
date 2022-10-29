@@ -12,8 +12,6 @@ jenkins:
       permissions:
         - "Overall/Administer:admin"
         - "Overall/Read:authenticated"
-      remotingSecurity:
-        enabled: true
 # Setup build authorization to control jobs' execution
 security:
   queueItemAuthenticator:
