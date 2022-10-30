@@ -1,15 +1,28 @@
 FROM jenkins/jenkins:latest
 
+USER root
+
 # Deactivate Jenkins Wizard
 ENV JAVA_OPTS -Djenkins.install.runSetupWizard=false
 ENV CASC_JENKINS_CONFIG /config/casc_config.yml
 
-USER root
+# Install tools and dependencies
 RUN apt-get update \
-    && apt-get install apt-utils ldap-utils curl wget vim nano sudo git net-tools -y --allow-unauthenticated \
+    && apt-get install \
+    apt-utils \
+    software-properties-common \
+    curl \
+    wget \
+    sudo \
+    git \
+    apt-transport-https \
+    net-tools \
+    -y --allow-unauthenticated \
     && rm -rf /var/lib/apt/lists/*
 
+# Permission to Jenkins to be allowed running the host's Docker
 RUN adduser jenkins sudo
+RUN sudo usermod -a -G docker jenkins
 
 USER jenkins
 
@@ -23,3 +36,8 @@ RUN jenkins-plugin-cli --plugin-file /config/plugins.txt
 
 # Add CASC config file
 COPY casc_config.yml /config/
+
+# Copy Jobs DSL seed
+COPY seed_jobs.groovy /config/
+
+WORKDIR ${JENKINS_HOME}
