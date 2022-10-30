@@ -32,13 +32,13 @@ USER jenkins
 # Ideally, we'd like to pass the plugins as argument individually
 # instead of a file as any changes to the plugins list should trigger
 # the docker build of this layer which is not the case here.
-COPY config/plugins.txt /config/
+COPY plugins.txt /config/
 RUN jenkins-plugin-cli --plugin-file /config/plugins.txt
 
 # Add CASC config file
-COPY config/casc_config.yml /config/
+COPY casc_config.yml /config/
 
 # Copy Jobs DSL seed
-COPY config/seed_jobs.groovy /config/
+COPY seed_jobs.groovy /config/
 
 WORKDIR ${JENKINS_HOME}

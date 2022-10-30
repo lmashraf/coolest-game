@@ -9,7 +9,7 @@ RUN apt-get -qq update && apt-get -qqy dist-upgrade
 RUN apt-get -y install \
     build-essential \
     cmake \
-    python \
+    python2 \
     gdb \
     unzip \
     tar \
