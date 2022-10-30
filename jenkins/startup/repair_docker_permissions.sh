@@ -6,4 +6,4 @@
 # - creates a 'docker' group in the container
 # - adds 'jenkins' user to it
 # - changes /var/run/docker.sock we mapped to 'docker' group
-docker exec -itd -u root jenkins-coolest-game /bin/bash "getent group docker || groupadd docker && usermod -aG docker jenkins && chgrp docker /var/run/docker.sock"
+docker exec -u root jenkins-coolest-game /bin/bash -c "getent group docker || groupadd docker && sudo chgrp docker /var/run/docker.sock"
