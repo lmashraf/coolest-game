@@ -22,6 +22,7 @@ RUN apt-get update \
 
 # Permission to Jenkins to be allowed running the host's Docker
 RUN adduser jenkins sudo
+RUN sudo groupadd docker
 RUN sudo usermod -a -G docker jenkins
 
 USER jenkins
