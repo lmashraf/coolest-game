@@ -18,6 +18,8 @@ security:
     authenticators:
     - global:
         strategy: triggeringUsersAuthorizationStrategy
+#jobs:
+#  - file: /config/seed_jobs.groovy
 unclassified:
   location:
     url: "http://localhost:8080/"
