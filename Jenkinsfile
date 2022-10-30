@@ -18,7 +18,7 @@ pipeline {
             }
             post {
                 success {
-                    archiveArtifacts artifacts: '**/CoolestGame_*', fingerprint: true
+                    archiveArtifacts artifacts: '**/$build_dir/**/CoolestGame_*', fingerprint: true
                 }
             }
         }
