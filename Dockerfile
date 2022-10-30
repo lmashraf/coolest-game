@@ -6,6 +6,14 @@ RUN dpkg --add-architecture i386
 RUN apt-get -qq update && apt-get -qqy dist-upgrade
 
 # Install essential packages
-RUN apt-get -y install build-essential cmake --no-install-recommends
+RUN apt-get -y install \
+    build-essential \
+    cmake \
+    gdb \
+    unzip \
+    tar \
+    --no-install-recommends
 
-WORKDIR /build
+RUN rm -rf /var/lib/apt/lists/*
+
+SHELL ["/bin/bash", "-c"]
