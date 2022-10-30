@@ -16,7 +16,7 @@ job('seed_jobs') {
             unzip master.zip -d jobs/
             ''')
         dsl {
-            external('jobs/*.groovy')
+            external('jobs/**/*.groovy')
         }
     }
 }
