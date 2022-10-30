@@ -8,7 +8,7 @@ Help()
    echo "Syntax: build -t <test|game|all> -d <build_dir> -b <Debug|Release>"
    echo "options:"
    echo "-t                Defines the target binary to build (test|game|all)."
-   echo "-d                Specifies the build folder name where to generate CMake files." 
+   echo "-d                Specifies the build folder name where to generate CMake files."
    echo "                  CAUTION: If it exists, it will be deleted."
    echo "-b                Specifies the build type (Debug | Release)."
    echo "-h                Shows help"
@@ -33,7 +33,7 @@ while getopts ":h:t:d:b:" option; do
          else
             Help
             echo "Error: Invalid build target. Expected: 'game', 'test' or 'all'"
-            echo ${OPTARG}
+            echo "${OPTARG}"
             exit
          fi;;
       d) # Set build directory
@@ -47,7 +47,7 @@ while getopts ":h:t:d:b:" option; do
          fi;;
       b) # Set the build type (Debug | Release)
          if [ "$OPTARG" = Debug ] || [ "$OPTARG" = Release ]; then
-               BUILD_TYPE=$OPTARG;
+               BUILD_TYPE="$OPTARG";
                echo "- Build type is set to: ${BUILD_TYPE}"
          else
                Help
@@ -68,12 +68,13 @@ if [[ ! -v BUILD_TYPE || ! -v BUILD_TARGET || ! -v BUILD_DIR ]]; then
    else
 
       # If the build folder already exists it will be deleted and reset.
-      if [ -d "${BUILD_DIR}" ]; then rm -Rf ${BUILD_DIR}; fi
-      mkdir ${BUILD_DIR} && cd ${BUILD_DIR}
+      if [ -d "${BUILD_DIR}" ]; then rm -Rf "${BUILD_DIR}"; fi
+      mkdir "${BUILD_DIR}"
+      cd "${BUILD_DIR}" || exit
 
       echo "- Starting CMake.."
-      cmake .. -DCMAKE_BUILD_TYPE=${BUILD_TYPE} -G "Unix Makefiles"
+      cmake .. -DCMAKE_BUILD_TYPE="${BUILD_TYPE}" -G "Unix Makefiles"
 
       echo "- Building.."
-      make ${BUILD_TARGET}
+      make "${BUILD_TARGET}"
 fi
