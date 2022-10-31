@@ -29,7 +29,7 @@ pipeline {
                 sh "./$build_dir/game/test/CoolestGame_test --gtest_output=xml"
             }
             post {
-                success {
+                always {
                     junit '**.xml'
                 }
             }
