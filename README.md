@@ -1,12 +1,15 @@
-# CoolestGame
-Build automation for a C++ (cmake/gtest) project using Jenkins CASC.
+# Summary
+
+A small project to showcase build and test automation of a C++ project using Cmake/gtest with a Jenkins (jcasc) dockerized solution.
 
 # Prerequisites:
-- docker
-- cmake
-- g++
+- docker (version: 20.10.21+)
+- cmake (version: 3.10.2+)
+- g++ (version: 7.5.0+)
 
-`sudo apt update && sudo apt install build-essentials g++ cmake python2 docker`
+`sudo apt update && sudo apt install build-essentials g++ cmake python2 docker-engine`
+
+For detailed docker installation see: https://docs.docker.com/engine/install/ubuntu/
 
 - Set Github personal token to read from the repositories
 
@@ -20,7 +23,7 @@ Either clone the repository `https://github.com/lmashraf/coolest-game` or get th
 
  `./build.sh -b [game | test | all] -d <build_directory> -t [Debug | Release]`
 
-eg. : `./build.sh -b all -d build -t Debug` for help, run `./build.sh -h`
+eg. : `./build.sh -t all -d build -b Debug` for help, run `./build.sh -h`
 
 Based on the command shown on the example above, the build and test binaries shall be generated inside the `build/game` and `build/game/test/` folders respectively.
 
@@ -36,8 +39,8 @@ The project contains two subfolders for CI :
 - `jenkins`: a folder that has all jenkins configuration presets such as JCASC file configuration, jenkins plugins and seed_job script as well as a few scripts to spin up the Jenkins instance.
 - `pipelines`: a folder with the Jenkinsfile pipeline scripts that shall run inside the generated jobs
 
-1. From the root folder, run the commands: `cd jenkins` then `./run_jenkins.sh`.
-2. Optionally: While the Jenkins instance is up and running, execute `./startup/fix_docker_permissions.sh` to fix permission issues related to docker inside the Jenkins container.
+1. From inside the `jenkins` folder, simply run `./run_jenkins.sh`.
+2. Optionally: While the Jenkins instance is up and running, execute `./fix_docker_permissions.sh` to fix permission issues related to docker inside the Jenkins container.
 3. The Jenkins instance starts on `https://localhost:8080` with the admin credentials defined in the Dockerfile `(admin:p@55w0rd)`
 
 ![login](https://github.com/lmashraf/coolest-game/blob/master/docs/1_jenkins_login.jpg?raw=true)
@@ -62,4 +65,3 @@ The project contains two subfolders for CI :
 7. Run any of the build jobs as necessary (Release or Debug).
 
 ![script approval](https://github.com/lmashraf/coolest-game/blob/master/docs/7_jobs_execution.jpg?raw=true)
-
