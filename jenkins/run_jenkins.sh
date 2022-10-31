@@ -13,6 +13,7 @@ docker run --name jenkins-coolest-game \
             --privileged \
             --rm -p 8080:8080 \
             --env JENKINS_ADMIN_ID="admin" --env JENKINS_ADMIN_PASSWORD="p@55w0rd" \
+            --env git_token=${git_token} \
             -v $(pwd)/${JENKINS_HOME}:/var/jenkins_home \
             -v $(which docker):/usr/bin/docker \
             -v /var/run/docker.sock:/var/run/docker.sock \

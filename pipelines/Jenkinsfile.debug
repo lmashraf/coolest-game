@@ -18,7 +18,7 @@ pipeline {
             }
             post {
                 success {
-                    archiveArtifacts artifacts: '**/$build_dir/**/CoolestGame_*', fingerprint: true
+                    archiveArtifacts artifacts: '**/CoolestGame_*', fingerprint: true
                 }
             }
         }
@@ -27,6 +27,11 @@ pipeline {
             steps
             {
                 sh "./$build_dir/game/test/CoolestGame_test --gtest_output=xml"
+            }
+            post {
+                success {
+                    junit '**.xml'
+                }
             }
         }
     }

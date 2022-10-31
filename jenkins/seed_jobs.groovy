@@ -13,10 +13,10 @@ job('seed_jobs') {
         // Clone jobs
         shell('''
             wget https://github.com/lmashraf/coolest-game-jobs-dsl/archive/master.zip
-            unzip master.zip -d jobs/
+            unzip -o master.zip -d jobs/
             ''')
         dsl {
-            external('jobs/*.groovy')
+            external('jobs/**/*.groovy')
         }
     }
 }
