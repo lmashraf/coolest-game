@@ -30,7 +30,7 @@ pipeline {
             }
             post {
                 success {
-                    junit '*.xml'
+                    junit '**.xml'
                 }
             }
         }
