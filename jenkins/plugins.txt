@@ -1,5 +1,6 @@
 ant:latest
 antisamy-markup-formatter:latest
+ansicolor:latest
 authorize-project:latest
 build-timeout:latest
 cloudbees-folder:latest
