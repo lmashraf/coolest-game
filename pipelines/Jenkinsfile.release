@@ -4,12 +4,29 @@ pipeline {
             filename 'Dockerfile'
         }
     }
+    options {
+        timeout(time: 1, unit: 'HOURS')
+        buildDiscarder(logRotator(numToKeepStr: '20', artifactNumToKeepStr: '20', daysToKeepStr: '30'))
+        timestamps()
+        ansiColor('xterm')
+        disableResume()
+        durabilityHint('PERFORMANCE_OPTIMIZED')
+    }
     parameters {
         string(defaultValue: 'all', description: 'Targets intended to be built (all | game | test)', name: 'build_target')
         string(defaultValue: 'Release', description: 'Selected build type (Debug | Release).', name: 'build_type')
         string(defaultValue: 'build', description: 'Build folder where binaries will be stored at the end.', name: 'build_dir')
     }
     stages {
+        // Initialise default parameters as EnvVars for the first build as workaround the bug:
+        // https://issues.jenkins-ci.org/browse/JENKINS-41929
+        stage('Initialise') {
+            steps {
+                script {
+                    params.each { k, v -> env[k] = v }
+                }
+            }
+        }
         stage('Build')
         {
             steps
