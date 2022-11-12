@@ -9,8 +9,6 @@ pipeline {
         buildDiscarder(logRotator(numToKeepStr: '20', artifactNumToKeepStr: '20', daysToKeepStr: '30'))
         timestamps()
         ansiColor('xterm')
-        disableResume()
-        durabilityHint('PERFORMANCE_OPTIMIZED')
     }
     parameters {
         string(defaultValue: 'all', description: 'Targets intended to be built (all | game | test)', name: 'build_target')
