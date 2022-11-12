@@ -17,7 +17,7 @@ Help()
 
 # List of available build targets and their mapping
 declare -A BUILD_TARGETS_ARRAY=(
- [all]=all  [game]=CoolestGame_run  [test]=CoolestGame_lib
+ [all]=all  [game]=CoolestGame_run  [test]=CoolestGame_test
 )
 
 # Get the options
