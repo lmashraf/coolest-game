@@ -36,8 +36,9 @@ Based on the command shown on the example above, the build and test binaries sha
 # How To Run on Jenkins
 ## Start the Jenkins Container
 The project contains two subfolders for CI :
-- `jenkins`: a folder that has all jenkins configuration presets such as JCASC file configuration, jenkins plugins and seed_job script as well as a few scripts to spin up the Jenkins instance.
-- `pipelines`: a folder with the Jenkinsfile pipeline scripts that shall run inside the generated jobs
+- `jenkins`: root CI/CD folder contains necessary scripts to run a Jenkins instance in docker container with preset configurations.
+- `jenkins/pipelines`: a folder with the Jenkinsfile pipeline scripts that shall run inside the generated jobs.
+- `jenkins/config`: a folder that has all jenkins configuration presets such as JCASC file configuration, jenkins plugins and seed_job script.
 
 1. From inside the `jenkins` folder, simply run `./run_jenkins.sh`.
 2. Optionally: While the Jenkins instance is up and running, execute `./fix_docker_permissions.sh` to fix permission issues related to docker inside the Jenkins container.
